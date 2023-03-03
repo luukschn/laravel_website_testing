@@ -1,17 +1,16 @@
-<html>
+@extends('layouts.app')
 
-   <head>
-      <title>Form Example</title>
-   </head>
+@section('title', 'Registration')
 
-   <body>
-      <form action = "/user/register" method = "post">
+@section('content')
+   <div>
+      <form action = "/user/register" method = "post" class="registration_form">
          <input type = "hidden" name = "_token" value = "<?php echo csrf_token() ?>">
       
          <table>
             <tr>
-               <td>Name</td>
-               <td><input type = "text" name = "name" /></td>
+               <td>E-mail</td>
+               <td><input type = "text" name = "email" /></td>
             </tr>
             <tr>
                <td>Username</td>
@@ -27,7 +26,6 @@
                </td>
             </tr>
          </table>
-      
       </form>
-   </body>
-</html>
+   </div>
+@endsection

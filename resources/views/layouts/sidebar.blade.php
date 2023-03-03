@@ -6,4 +6,9 @@
         <li><a href=" {{ url('/sudoku') }} ">Play Sudoku</a></li>
         <li><a href=" {{ url('/assessment') }} ">Do an assessment</a></li>
     </ul>
+
+    <div class="session-status-sidebar">
+        <p>Not logged in<p>
+        <a href="{{ url('/registration') }}">Register here</a>
+    </div>
 </div>

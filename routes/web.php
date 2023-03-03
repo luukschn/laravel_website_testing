@@ -35,14 +35,33 @@ Route::get('/assessment', [AssessmentController::class, 'get_assessment_page']);
 //post route should probably be in routes/api?
 Route::post('/submit-form', [FormController::class, 'submitForm']);
 
+//registration
+Route::get('/registration', function() {
+    return view('registration');
+ });
+Route::post('/user/register', [UserRegistration::class, 'postRegister']);
+// Route::post('/user/register', [UserRegistration::class, 'postRegister']. function () {
+    
+    // pw verification not working
+    // $rules = array(
+    //     'username' => 'required',
+    //     'password' => 'required|min:4',
+    //     'email' => 'required|email',
+    // );
+
+    // $validator = Validator::make(Request::input(), $rules);
+
+    // if ($validator->fails()) {
+    //     return Redirect::to('/register')->withErrors($validator);
+    // }
+
+// });
+
 
 
 // TRIAL METHODS
 Route::get('/foo/bar', [UriController::class, 'index']);
-Route::get('/register', function() {
-    return view('registration');
- });
-Route::post('/user/register', [UserRegistration::class, 'postRegister']);
+
  
 
 
