@@ -49,8 +49,7 @@ class FormController extends Controller
             info('fail');
         }
 
-        //TODO: find way to integrate the show_results function here. maybe have to restructure the documents
-        return view('welcome');
+        return redirect('/assessment/result/'.$user_id);
 
     }
 }

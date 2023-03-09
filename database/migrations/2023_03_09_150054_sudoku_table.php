@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UpdateScoresTableIncludeUser extends Migration
+class SudokuTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,16 @@ class UpdateScoresTableIncludeUser extends Migration
      */
     public function up()
     {
-        Schema::table('scores', function (Blueprint $table) {
+        Schema::create('sudoku', function (Blueprint $table) {
             $table->unsignedBigInteger('userId')->nullable();
 
             $table->foreign('userId')
                   ->references('id')
                   ->on('users')
                   ->onDelete('cascade');
+
+            $table->integer('sudoku_elo')->default(1000);
         });
-
-
     }
 
     /**
@@ -32,9 +32,6 @@ class UpdateScoresTableIncludeUser extends Migration
      */
     public function down()
     {
-        Schema::table('scores', function (Blueprint $table) {
-            $table->dropColumn('userId');
-        });
-
+        Schema::dropIfExists('sudoku');
     }
 }
