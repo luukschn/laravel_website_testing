@@ -1,14 +1,18 @@
 <?php
 
+
+// TODO: make this somewhat more elegant? Split up controllers in different files mb?
+
+use App\Http\Controllers\MacroController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SudokuController;
 use App\Http\Controllers\ScriptController;
 use App\Http\Controllers\AssessmentController;
 use App\Http\Controllers\FormController;
-
-//for trial purposes
-use App\Http\Controllers\UriController;
 use App\Http\Controllers\UserRegistration; 
+use App\Http\Controllers\LoginController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -34,10 +38,16 @@ Route::get('/run-script', [ScriptController::class, 'run']);
 Route::get('/assessment', [AssessmentController::class, 'get_assessment_page']);
 //post route should probably be in routes/api?
 Route::post('/submit-form', [FormController::class, 'submitForm']);
+//id is userId, have to migrate database sometime for this to be a clearer distinction
+Route::get('/assessment/result/{id}', [AssessmentController::class, 'show_results']);
 
 //registration
 Route::get('/registration', function() {
+    if (Auth::check()){
+        return view('welcome');
+    } else {
     return view('registration');
+    };
  });
 Route::post('/user/register', [UserRegistration::class, 'postRegister']);
 // Route::post('/user/register', [UserRegistration::class, 'postRegister']. function () {
@@ -56,11 +66,19 @@ Route::post('/user/register', [UserRegistration::class, 'postRegister']);
     // }
 
 // });
+// Login
+Route::get('/login', function() {
+    return view('login');
+});
+Route::post('user/login', [LoginController::class, 'login']);
 
+// Logout 
+Route::get('/logout', function() {
+    Auth::logout();
+    return view('welcome');
+});
 
-
-// TRIAL METHODS
-Route::get('/foo/bar', [UriController::class, 'index']);
+Route::get('/macros', [MacroController::class, 'input_macros']);
 
  
 

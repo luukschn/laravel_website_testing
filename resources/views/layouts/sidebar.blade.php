@@ -8,7 +8,21 @@
     </ul>
 
     <div class="session-status-sidebar">
-        <p>Not logged in<p>
-        <a href="{{ url('/registration') }}">Register here</a>
+        @if (Auth::check())
+            @php 
+                $username = Auth::user()->username;
+            @endphp
+            Logged in as {{ $username }}
+
+            <br>
+            <a href= "{{ url('/logout') }}">Logout</a>
+        @else
+            Not logged in
+            <br>
+            <a href="{{ url('/login') }}">Login here</a>
+        @endif
+        <br>
+        
+        
     </div>
 </div>

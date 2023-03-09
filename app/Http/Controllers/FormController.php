@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Scores;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class FormController extends Controller
@@ -14,12 +16,25 @@ class FormController extends Controller
 
             $score1 = $request->input('sunshine');
             $score2 = $request->input('potato');
+            $user_id = Auth::id();
 
-            DB::table('scores')->insert([
+            $scores = new Scores();
+            
+            $scores->insert([
                 'score1' => $score1,
                 'score2' => $score2,
-                'updated_at' => now()
+                'updated_at' => now(),
+                'userId' => $user_id
             ]);
+                   
+
+
+            // DB::table('scores')->insert([
+            //     'score1' => $score1,
+            //     'score2' => $score2,
+            //     'updated_at' => now(),
+            //     'userId' => $user_id
+            // ]);
 
             // $i = 0;
             // foreach ($request->input() as $value) {
@@ -34,7 +49,8 @@ class FormController extends Controller
             info('fail');
         }
 
-        return redirect()->back();
+        //TODO: find way to integrate the show_results function here. maybe have to restructure the documents
+        return view('welcome');
 
     }
 }
