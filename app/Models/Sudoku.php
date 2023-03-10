@@ -11,6 +11,7 @@ class Sudoku extends Model
 
     protected $primaryKey = 'userId';
 
+    # TODO: need to set this to minimum value of 0
     protected $fillable = [
         'sudoku_elo'
     ];
