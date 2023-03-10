@@ -4,6 +4,13 @@
 
 @section('content')
 
+<!--
+REDO GENERATION OF THIS WITH PHP
+make it so it generates based on the score from the DB
+
+remake sudokucontroller, logic to say how many squares need to be filled gets done in there
+-->
+
         <style type="text/css">
             html, body {
                 background-color: #FAFAFA

@@ -4,6 +4,9 @@
 
 @section('content')
    <div>
+      <p>Insert your details to register.</p>
+   </div>
+   <div>
       <form action = "/user/register" method = "post" class="registration_form">
          <input type = "hidden" name = "_token" value = "<?php echo csrf_token() ?>">
       
